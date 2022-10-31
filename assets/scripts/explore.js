@@ -41,11 +41,15 @@ function speak(event){
       utterance.voice = voices[i];
     }
   }
+
   synth.speak(utterance);
-  if(synth.speaking){
-    document.querySelector('img').src = "assets/images/smiling-open.png";
-  }
-  else{
-    document.querySelector('img').src = "assets/images/smiling.png";
-  }
+  let display = setInterval(checking(synth.paused),1);
+  setInterval(function(){
+    if(synth.speaking){
+      document.querySelector('img').src = "assets/images/smiling-open.png";
+    }
+    else{
+      document.querySelector('img').src = "assets/images/smiling.png";
+    }
+}, 1);
 }
